@@ -1,12 +1,45 @@
+import styled from "styled-components";
+import { HashRouter as Router, Link, Route, Routes } from "react-router-dom";
+import Nav from "./components/Nav"
+const Wrap = styled.div`
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
+`;
 
-
-
-function App() {
+const Main = styled.div`
+  
+  border:1px solid lime;
+  flex-grow:1;
+`
+export default function App() {
   return (
-    <div className="App">
-      app
-    </div>
+    <Router>
+      <Wrap>
+        <Main>
+        <Routes>
+          <Route path="/about" element={<About />} />
+          <Route path="/users" element={<Users />} />
+          <Route path="/" element={<Home />} />
+          <Route element={NoMatch}/>
+        </Routes>
+        </Main>
+        <Nav />
+      </Wrap>
+    </Router>
   );
 }
+function About() {
+  return <>about</>;
+}
+function Users() {
+  return <>users</>;
+}
 
-export default App;
+function Home() {
+  return <>home</>;
+}
+function NoMatch() {
+  return <>404</>;
+}
+
