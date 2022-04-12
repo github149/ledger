@@ -1,45 +1,57 @@
 import styled from "styled-components";
-import { HashRouter as Router, Link, Route, Routes } from "react-router-dom";
-import Nav from "./components/Nav"
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
+import Nav from "./components/Nav";
 const Wrap = styled.div`
-  display:flex;
-  flex-direction:column;
-  min-height:100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 `;
 
 const Main = styled.div`
-  
-  border:1px solid lime;
-  flex-grow:1;
-`
+  border: 1px solid lime;
+  flex-grow: 1;
+`;
 export default function App() {
   return (
     <Router>
-      <Wrap>
-        <Main>
-        <Routes>
-          <Route path="/about" element={<About />} />
-          <Route path="/users" element={<Users />} />
-          <Route path="/" element={<Home />} />
-          <Route element={NoMatch}/>
-        </Routes>
-        </Main>
-        <Nav />
-      </Wrap>
+      <Routes>
+        <Route path="/about" element={<About />} />
+        <Route path="/users" element={<Users />} />
+        <Route path="/" element={<Home />} />
+        <Route path="*" element={<NoMatch></NoMatch>} />
+      </Routes>
     </Router>
   );
 }
 function About() {
-  return <>about</>;
+  return (
+    <Wrap>
+      <Main>about</Main>
+      <Nav />
+    </Wrap>
+  );
 }
 function Users() {
-  return <>users</>;
+  return (
+    <Wrap>
+      <Main>Users</Main>
+      <Nav />
+    </Wrap>
+  );
 }
-
 function Home() {
-  return <>home</>;
-}
-function NoMatch() {
-  return <>404</>;
+  return (
+    <Wrap>
+      <Main>home</Main>
+      <Nav />
+    </Wrap>
+  );
 }
 
+function NoMatch() {
+  return (
+    <Wrap>
+      <Main>这是404页面</Main>
+    </Wrap>
+  );
+}
