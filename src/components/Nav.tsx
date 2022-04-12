@@ -3,9 +3,6 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Icon from "./Icon";
 
-// import y from "../icons/money.svg"
-// import z from "../icons/tags.svg"
-
 const Navbar = styled.nav`
   > ul {
     display: flex;
@@ -15,10 +12,23 @@ const Navbar = styled.nav`
 
     > li {
       flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+       
+      >a{
+        
+        flex: 1;
+        display: flex;
+        flex-direction:column;
+        justify-content: center;
+        align-items: center;
+      }
+      .icon{
+        
+          width:24px;
+          height:24px
+      }
+      
+      
+      
     }
   }
 `;
@@ -27,16 +37,22 @@ export default function Nav() {
     <Navbar>
       <ul>
         <li>
-          <Icon name="#tags" />
-          <Link to="/">Home</Link>
+          <Link to="/">
+            <Icon name="#tags" />
+            tags
+          </Link>
         </li>
         <li>
-          <Icon name="#money" />
-          <Link to="/about">About</Link>
+          <Link to="/money">
+            <Icon name="#money" />
+            money
+          </Link>
         </li>
         <li>
-          <Icon name="#chart" />
-          <Link to="/users">Users</Link>
+          <Link to="/charts">
+            <Icon name="#chart" />
+            charts
+          </Link>
         </li>
       </ul>
     </Navbar>
