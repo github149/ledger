@@ -1,5 +1,4 @@
 
-import Nav from "../components/Nav";
 import Layout from "../components/Layout";
 import styled from "styled-components";
 const Main = styled.div`

@@ -1,6 +1,6 @@
 //将导航组件从App组件抽离
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { NavLink } from 'react-router-dom'
 import Icon from "./Icon";
 
 const Navbar = styled.nav`
@@ -12,23 +12,23 @@ const Navbar = styled.nav`
 
     > li {
       flex: 1;
-       
-      >a{
-        
+      > a {
+        &.light{
+          color:red;
+          >.icon{
+            fill:red;
+          }
+        }
         flex: 1;
         display: flex;
-        flex-direction:column;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
       }
-      .icon{
-        
-          width:24px;
-          height:24px
+      .icon {
+        width: 24px;
+        height: 24px;
       }
-      
-      
-      
     }
   }
 `;
@@ -37,22 +37,23 @@ export default function Nav() {
     <Navbar>
       <ul>
         <li>
-          <Link to="/">
+
+          <NavLink  to="/" className={({ isActive }) =>isActive ? "light" : ""}>
             <Icon name="#tags" />
             tags
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to="/money">
+          <NavLink to="/money" className={({ isActive }) =>isActive ? "light" : ""}>
             <Icon name="#money" />
             money
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to="/charts">
+          <NavLink to="/charts" className={({ isActive }) =>isActive ? "light" : ""}>
             <Icon name="#chart" />
             charts
-          </Link>
+          </NavLink>
         </li>
       </ul>
     </Navbar>
