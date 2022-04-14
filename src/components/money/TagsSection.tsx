@@ -1,6 +1,7 @@
 
 import styled from "styled-components"
 //定义一个函数组件
+import generateId from "utils/createId";
 import { useTags } from "utils/useTags";
 export  const TagsSection:React.FunctionComponent<{value:{id:number,name:string}[],onCheck:(value:{id:number,name:string}[])=>void}> = (props) => {
    let {tags,setTags} = useTags()
@@ -11,7 +12,7 @@ export  const TagsSection:React.FunctionComponent<{value:{id:number,name:string}
      //添加标签 类型为null和""均不能添加
      if(tagName){
        //id需要变
-      setTags([...tags,{id:5,name:tagName}])
+      setTags([...tags,{id:generateId(),name:tagName}])
      }
    }
    let toggleTag = (item:{id:number,name:string})=>{

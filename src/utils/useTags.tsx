@@ -1,9 +1,16 @@
-import { useState } from "react"
+import { useState } from "react";
 //抽离
-export const useTags = () =>{
-    let [tags,setTags] = useState<{id:number,name:string}[]>([{id:1,name:"衣"},{id:2,name:"食"},{id:3,name:"住"},{id:4,name:"行"}])
-    return {
-        tags,
-        setTags,
-    }
-}
+import generateId from "./createId";
+const  defaultTags = [
+    { id: generateId(), name: "衣" },
+    { id: generateId(), name: "食" },
+    { id: generateId(), name: "住" },
+    { id: generateId(), name: "行" },
+]
+export const useTags = () => {
+  let [tags, setTags] = useState<{ id: number; name: string }[]>(defaultTags);
+  return {
+    tags,
+    setTags,
+  };
+};
