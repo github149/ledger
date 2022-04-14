@@ -12,7 +12,7 @@ import { Main } from "components/Main";
 
 export default function Money() {
   let [value,setValue] = useState({
-    tags:[] as string[],
+    tags:[] as {id:number,name:string}[],
     notes:'',
     category:'-' as ('+' | '-'),
     amount:''

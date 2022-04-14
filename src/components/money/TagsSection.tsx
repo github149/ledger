@@ -2,7 +2,7 @@
 import styled from "styled-components"
 //定义一个函数组件
 import { useTags } from "utils/useTags";
-export  const TagsSection:React.FunctionComponent<{value:string[],onCheck:(value:string[])=>void}> = (props) => {
+export  const TagsSection:React.FunctionComponent<{value:{id:number,name:string}[],onCheck:(value:{id:number,name:string}[])=>void}> = (props) => {
    let {tags,setTags} = useTags()
    let check = props.value
    let setChecked = props.onCheck
@@ -10,24 +10,25 @@ export  const TagsSection:React.FunctionComponent<{value:string[],onCheck:(value
      const tagName = window.prompt('请输入标签名') as string
      //添加标签 类型为null和""均不能添加
      if(tagName){
-      setTags([...tags,tagName])
+       //id需要变
+      setTags([...tags,{id:5,name:tagName}])
      }
    }
-   let toggleTag = (item:string)=>{
-     if(check.includes(item)){
+   let toggleTag = (item:{id:number,name:string})=>{
+     if(check.map(item=>item.id).includes(item.id)){
        //如果已经被选中了
-       setChecked(check.filter(t=>t!==item))
+       setChecked(check.filter(t=>t.id!==item.id))
      }else{
       //没被选中
-       setChecked([...check,item]) 
+       setChecked([...check,{id:item.id,name:item.name}]) 
      }
      
    }
     return (
       <HeaderBar>
-        {check.join('')}
+        {check.map(item=>item.id).join('')}
         <ul>
-          {tags.map(item=>(<li key={item} onClick={()=>toggleTag(item)} className={check.includes(item)?"selected":""}>{item}</li>))}
+          {tags.map(item=>(<li key={item.id} onClick={()=>toggleTag(item)} className={check.map(item=>item.id).includes(item.id)?"selected":""}>{item.name}</li>))}
         </ul>
         <div onClick={addTags}>新增标签</div>
       </HeaderBar>

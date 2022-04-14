@@ -40,9 +40,9 @@ export default function Tag() {
       <List>
         <ul>
           {tags.map((item) => (
-            <li key={item}>
-              <NavLink to={`/tags/${item}`}>
-                {item}
+            <li key={item.id}>
+              <NavLink to={`/tags/${item.id}`}>
+                {item.name}
                 <Icon name="#right" />
               </NavLink>
             </li>
