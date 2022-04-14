@@ -12,7 +12,7 @@ export default function App() {
         <Route path="/charts" element={<Charts />} />
         <Route path="/money" element={<Money />} />
         <Route path="/tags" element={<Tags />} />
-        <Route path="/tags/:tags" element={<Detail />} />
+        <Route path="/tags/:id" element={<Detail />} />
         <Route path="*" element={<NoMatch></NoMatch>} />
       </Routes>
     </Router>

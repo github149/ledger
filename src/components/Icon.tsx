@@ -1,5 +1,5 @@
 type Props = {
-  name: string;
+  name?: string;
 };
 
 
@@ -14,7 +14,7 @@ try {
 
 
 export default function Icon(props: Props) {
-  console.log(props);
+
   return (
     <svg className="icon">
       <use xlinkHref={props.name} />
