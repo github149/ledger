@@ -1,15 +1,35 @@
+
 import styled from "styled-components"
 //定义一个函数组件
-export  const TagsSection:React.FunctionComponent = () => {
+import { useTags } from "utils/useTags";
+export  const TagsSection:React.FunctionComponent<{value:string[],onCheck:(value:string[])=>void}> = (props) => {
+   let {tags,setTags} = useTags()
+   let check = props.value
+   let setChecked = props.onCheck
+   let addTags = ()=>{
+     const tagName = window.prompt('请输入标签名') as string
+     //添加标签 类型为null和""均不能添加
+     if(tagName){
+      setTags([...tags,tagName])
+     }
+   }
+   let toggleTag = (item:string)=>{
+     if(check.includes(item)){
+       //如果已经被选中了
+       setChecked(check.filter(t=>t!==item))
+     }else{
+      //没被选中
+       setChecked([...check,item]) 
+     }
+     
+   }
     return (
       <HeaderBar>
+        {check.join('')}
         <ul>
-          <li>衣</li>
-          <li>食</li>
-          <li>住</li>
-          <li>行</li>
+          {tags.map(item=>(<li key={item} onClick={()=>toggleTag(item)} className={check.includes(item)?"selected":""}>{item}</li>))}
         </ul>
-        <div>新增标签</div>
+        <div onClick={addTags}>新增标签</div>
       </HeaderBar>
     );
   }
@@ -21,7 +41,12 @@ export  const TagsSection:React.FunctionComponent = () => {
      >ul{
        display:flex;
        margin-left:-8px;
-       >li{ 
+       flex-wrap:wrap;
+       >li{
+         &.selected{
+           background:#f60;
+         } 
+         margin-top:8px;
          background-color:#D9D9D9;
          margin-left:24px;
          font-size:14px;

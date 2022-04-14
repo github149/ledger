@@ -1,14 +1,15 @@
 import Nav from "../components/Nav";
 import Layout from "../components/Layout";
-import styled from "styled-components";
-const Main = styled.div`
-  border: 1px solid lime;
-  flex-grow: 1;
-`;
+
+import Tag from "../components/Tag/Tag"
+import { Main } from "components/Main";
+
 export default function Tags() {
   return (
     <Layout>
-      <Main> Tags</Main>
+      <Main> 
+      <Tag/>
+      </Main>
       <Nav />
     </Layout>
   );

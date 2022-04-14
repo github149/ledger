@@ -38,7 +38,7 @@ export default function Nav() {
       <ul>
         <li>
 
-          <NavLink  to="/" className={({ isActive }) =>isActive ? "light" : ""}>
+          <NavLink  to="/tags" className={({ isActive }) =>isActive ? "light" : ""}>
             <Icon name="#tags" />
             tags
           </NavLink>
