@@ -15,19 +15,13 @@ export  const TagsSection:React.FunctionComponent<{value:{id:number,name:string}
       setTags([...tags,{id:generateId(),name:tagName}])
      }
    }
+   //
    let toggleTag = (item:{id:number,name:string})=>{
-     if(check.map(item=>item.id).includes(item.id)){
-       //如果已经被选中了
-       setChecked(check.filter(t=>t.id!==item.id))
-     }else{
-      //没被选中
-       setChecked([...check,{id:item.id,name:item.name}]) 
-     }
-     
+      //设置只能选一个
+       setChecked([{id:item.id,name:item.name}])    
    }
     return (
       <HeaderBar>
-        {check.map(item=>item.id).join('')}
         <ul>
           {tags.map(item=>(<li key={item.id} onClick={()=>toggleTag(item)} className={check.map(item=>item.id).includes(item.id)?"selected":""}>{item.name}</li>))}
         </ul>

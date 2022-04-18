@@ -7,15 +7,22 @@ import { TagsSection } from "components/money/TagsSection";
 import { Button } from "components/money/Button";
 import { useState } from "react";
 import { Main } from "components/Main";
+import dayjs from 'dayjs';
 
 //定义全局数据
 
+
 export default function Money() {
+  let defaultValue = JSON.parse(window.localStorage.getItem('tags') || '[]')
+  if(defaultValue.length > 0){
+    defaultValue = [defaultValue[0]]
+  }
   let [value,setValue] = useState({
-    tags:[] as {id:number,name:string}[],
+    tags:defaultValue as {id:number,name:string}[],
     notes:'',
     category:'-' as ('+' | '-'),
-    amount:''
+    amount:'',
+    createdAt:dayjs(new Date()).format( "YYYY年MM月DD日") 
   })
  
   
@@ -36,10 +43,11 @@ export default function Money() {
           category
         })}/>
         
-        <Keypad value={value.amount} onCheck={(amount:any)=>setValue({
+        <Keypad record={value}  value={value.amount} onCheck={(amount:any)=>{
+          return setValue({
           ...value,
           amount
-        })}></Keypad>
+        })}}></Keypad>
       </Main>
       <Nav />
     </Layout>

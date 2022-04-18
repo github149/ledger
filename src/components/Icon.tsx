@@ -1,7 +1,7 @@
 type Props = {
   name?: string;
-};
-
+  onClick?:()=>void
+} ;
 
 //引入icon下的所有svg
 const importAll = (requireContext: __WebpackModuleApi.RequireContext) =>
@@ -12,12 +12,12 @@ try {
   console.log(error);
 }
 
-
 export default function Icon(props: Props) {
+  let { name, onClick } = props;
 
   return (
-    <svg className="icon">
-      <use xlinkHref={props.name} />
+    <svg className="icon" onClick={onClick}>
+      {props.name && <use xlinkHref={name} />}
     </svg>
   );
 }

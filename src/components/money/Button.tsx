@@ -23,7 +23,7 @@ export const Button:React.FC<Props> = function (props) {
     </Btn>
   );
 };
-const Btn = styled.div`
+ const Btn = styled.div`
   display: flex;
   background-color: #c4c4c4;
   > div {

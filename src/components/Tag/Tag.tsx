@@ -3,6 +3,8 @@ import styled from "styled-components";
 import Icon from "components/Icon";
 import { useTags } from "utils/useTags";
 import { NavLink } from "react-router-dom";
+import { Button } from "components/Button";
+import generateId from "utils/createId";
 const List = styled.div`
   background: #fff;
   >ul > li {
@@ -21,20 +23,17 @@ const List = styled.div`
     } 
   }
 `;
-const Button = styled.button`
-  width: 98px;
-  appearance: none;
-  outline: none;
-  border: none;
-  background: #767676;
-  font-size: 16px;
-  padding: 10px 0px;
-  border-radius: 5px;
-  color: #fff;
-  margin: 40px auto;
-`;
+
 export default function Tag() {
-  let { tags } = useTags();
+  let { tags,setTags } = useTags();
+  let addTags = ()=>{
+    const tagName = window.prompt('请输入标签名') as string
+    //添加标签 类型为null和""均不能添加
+    if(tagName){
+      //id需要变
+     setTags([...tags,{id:generateId(),name:tagName}])
+    }
+  }
   return (
     <Main>
       <List>
@@ -49,7 +48,7 @@ export default function Tag() {
           ))}
         </ul>
       </List>
-      <Button>新建标签</Button>
+      <Button onClick={addTags}>新增标签</Button>
     </Main>
   );
 }
